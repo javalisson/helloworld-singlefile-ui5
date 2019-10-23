@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hello World!</title>
+  <script id="sap-ui-bootstrap" type="text/javascript"
+    src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_belize"
+    data-sap-ui-libs="sap.ui.commons, sap.m">
+  </script>
+</head>
+
+<body id="content">
+  <script type="text/javascript">
+    // adapted from https://codepen.io/Saar/pen/qEzPmM
+    var app = new sap.m.App("myApp", { initialPage: "page1" });
+
+    // create the first page of your application
+    var page1 = new sap.m.Page("page1", {
+      title: "Initial Page",
+      content: new sap.m.Button({
+        // content is just one Button
+        text: "Go to Page 2",
+        press: function () {
+          app.to("page2");
+          // when pressed, it triggers drilldown to page 2
+        }
+      })
+    });
+
+    // create the second page of your application
+    var page2 = new sap.m.Page("page2", {
+      title: "Page 2",
+      showNavButton: true,
+      // page 2 should display a back button
+      navButtonPress: function () {
+        app.back();
+        // when tapped, the back button should navigate back up to page 1
+      },
+      icon: "http://www.sap.com/global/ui/images/global/sap-logo.png",
+      content: new sap.m.Text({ text: "Hello Mobile World!" })
+    });
+
+    app.addPage(page1).addPage(page2);
+
+    app.placeAt("content");
+  </script>
+</body>
+
+</html>
